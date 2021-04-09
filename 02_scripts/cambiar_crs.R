@@ -79,7 +79,9 @@ num_def=ggplot(data=provi %>%
   geom_text(data=titulo,aes(x=x,y=y,label=label),size=8,hjust=0)+
   geom_text(data=sub_titulo,aes(x=x,y=y,label=label),size=6,hjust=0,vjust=2)+
   annotation_north_arrow(location = "tr")+
-  annotation_scale()+
+  annotation_scale(height =  unit(0.3, "cm"),
+                   text_pad = unit(0.15, "cm"),
+                   text_cex = 1.2)+
   theme_void()+
   theme(
     axis.title = element_blank(), 
@@ -95,8 +97,14 @@ num_def=ggplot(data=provi %>%
     legend.position = c(0.05, 0.7), 
     legend.justification = c(0.05, 0.7))
 
-gg_num_def=ggdraw() +
+gg_num_def_1=ggdraw() +
   draw_plot(num_def) +
   draw_image(logo1,scale =0.15,x=-0.36,y=-0.07)
 
-gg_num_def %>% ggsave(filename = here("num_def.png"),height = 40,width = 60,units = "cm")
+gg_num_def_2=ggdraw() +
+  draw_plot(num_def) +
+  draw_image(logo2,scale =0.15,x=-0.36,y=-0.07)
+
+gg_num_def_1 %>% ggsave(filename = here("num_def_logo1.png"),height = 40,width = 60,units = "cm")
+gg_num_def_2 %>% ggsave(filename = here("num_def_logo2.png"),height = 40,width = 60,units = "cm")
+
